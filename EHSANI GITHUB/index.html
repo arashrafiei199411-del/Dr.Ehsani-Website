@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دکتر زهرا احسانی - روانشناس و مشاور خانواده</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F7FBFF 0%, #FFFFFF 50%, #E6F2FF 100%);
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(47, 128, 237, 0.12);
+        }
+
+        .glass-light {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2F80ED 0%, #3A9BFF 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(47, 128, 237, 0.3);
+        }
+
+        .service-card {
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(47, 128, 237, 0.2);
+        }
+
+        .calendar-day {
+            transition: all 0.2s ease;
+        }
+
+        .calendar-day:hover:not(.disabled) {
+            background: #E6F2FF;
+        }
+
+        .calendar-day.selected {
+            background: linear-gradient(135deg, #2F80ED 0%, #3A9BFF 100%);
+            color: white;
+        }
+
+        .time-slot {
+            transition: all 0.2s ease;
+        }
+
+        .time-slot:hover:not(.disabled) {
+            border-color: #2F80ED;
+            background: #E6F2FF;
+        }
+
+        .time-slot.selected {
+            background: linear-gradient(135deg, #2F80ED 0%, #3A9BFF 100%);
+            color: white;
+            border-color: #2F80ED;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #E6F2FF 0%, #D6E9FF 50%, #F7FBFF 100%);
+        }
+
+        .why-section {
+            background: linear-gradient(135deg, #E6F2FF 0%, #D6E9FF 100%);
+        }
+
+        .footer-bg {
+            background: linear-gradient(135deg, #1E5BB5 0%, #2F80ED 100%);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .check-item {
+            transition: all 0.3s ease;
+        }
+
+        .check-item:hover {
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+
+<body class="text-[#1E2A3A] overflow-x-hidden">
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 right-0 left-0 z-50 transition-all duration-300">
+        <div class="glass-light px-4 md:px-8 py-4">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <svg class="w-10 h-10 text-[#2F80ED]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                    <div>
+                        <h1 class="text-lg md:text-xl font-bold text-[#1E2A3A]">دکتر زهرا احسانی</h1>
+                        <p class="text-xs text-[#6B7A90]">روانشناس و مشاور خانواده</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a href="#home" class="text-[#1E2A3A] hover:text-[#2F80ED] transition-colors font-medium">خانه</a>
+                    <a href="#about" class="text-[#6B7A90] hover:text-[#2F80ED] transition-colors">درباره من</a>
+                    <a href="#services" class="text-[#6B7A90] hover:text-[#2F80ED] transition-colors">خدمات</a>
+                    <a href="#consultation" class="text-[#6B7A90] hover:text-[#2F80ED] transition-colors">نحوه
+                        مشاوره</a>
+                    <!-- <a href="#faq" class="text-[#6B7A90] hover:text-[#2F80ED] transition-colors">سوالات متداول</a> -->
+                    <a href="#contact" class="text-[#6B7A90] hover:text-[#2F80ED] transition-colors">تماس با من</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden lg:block">
+                    <a href="#booking"
+                        class="btn-primary text-white px-6 py-3 rounded-full flex items-center gap-2 font-medium">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        رزرو وقت مشاوره
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="lg:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden lg:hidden mt-4 pb-4 border-t border-white/30 pt-4">
+                <nav class="flex flex-col gap-4">
+                    <a href="#home" class="text-[#1E2A3A] hover:text-[#2F80ED] transition-colors font-medium">خانه</a>
+                    <a href="#about" class="text-[#6B7A90] hover:text-[#2F80ED] transition-colors">درباره من</a>
+                    <a href="#services" class="text-[#6B7A90] hover:text-[#2F80ED] transition-colors">خدمات</a>
+                    <a href="#consultation" class="text-[#6B7A90] hover:text-[#2F80ED] transition-colors">نحوه
+                        مشاوره</a>
+                    <!-- <a href="#faq" class="text-[#6B7A90] hover:text-[#2F80ED] transition-colors">سوالات متداول</a> -->
+                    <a href="#contact" class="text-[#6B7A90] hover:text-[#2F80ED] transition-colors">تماس با من</a>
+                    <a href="#booking"
+                        class="btn-primary text-white px-6 py-3 rounded-full flex items-center justify-center gap-2 font-medium mt-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        رزرو وقت مشاوره
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+
+
+
+    <!-- ==================== پس‌زمینه ویدئویی ثابت ==================== -->
+    <style id="parastoo-video-background-styles">
+        /* ویدئو در پشت محتوای صفحه ثابت می‌ماند و با اسکرول حرکت نمی‌کند. */
+        html {
+            background-color: #f5f2eb;
+        }
+
+        body {
+            background-color: transparent !important;
+            isolation: isolate;
+        }
+
+        /* شفاف بودن پوسته‌های بیرونی کمک می‌کند ویدئو در پس‌زمینه دیده شود. */
+        #page,
+        .site,
+        .site-main,
+        .site-content,
+        #content {
+            background-color: transparent !important;
+        }
+
+        .parastoo-video-background {
+            position: fixed;
+            inset: 0;
+            
+            overflow: hidden;
+            pointer-events: none;
+            background-color: #f5f2eb;
+        }
+
+        .parastoo-video-background__video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            opacity: 0.48;
+        }
+
+        /* لایه‌ی تیره‌ی ملایم برای لطافت تصویر و خواناتر ماندن متن‌ها */
+        .parastoo-video-background__shade {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(20, 27, 30, 0.16) 0%,
+                    rgba(20, 27, 30, 0.08) 48%,
+                    rgba(20, 27, 30, 0.18) 100%);
+        }
+
+        @media (max-width: 767px) {
+            .parastoo-video-background__video {
+                object-position: center center;
+                opacity: 0.52;
+            }
+        }
+    </style>
+
+    <div class="parastoo-video-background" aria-hidden="true">
+        <video class="parastoo-video-background__video" autoplay muted loop playsinline preload="auto"
+            poster="video/7.mp4" tabindex="-1">
+            <source src="video/7.mp4" type="video/mp4">
+        </video>
+        <div class="parastoo-video-background__shade"></div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg pt-32 pb-20 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Right Column (Text) -->
+                <div class="order-2 lg:order-1 fade-in">
+                    <!-- Badge -->
+                    <div class="glass inline-flex items-center gap-2 px-4 py-2 mb-6">
+                        <svg class="w-5 h-5 text-[#2F80ED]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        <span class="text-sm text-[#1E2A3A] font-medium">مشاوره تلفنی، روانشناسی و خانواده</span>
+                    </div>
+
+                    <!-- Headline -->
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        <span class="block">با یک تماس،</span>
+                        <span class="block">قدم به سوی <span class="text-[#2F80ED]">آرامش</span> بردارید</span>
+                    </h1>
+
+                    <!-- Subtitle -->
+                    <!-- <p class="text-lg text-[#6B7A90] mb-8 leading-relaxed">
+                        با مشاوره تلفنی حرفه‌ای، در هر کجا که هستید بهترین تصمیم‌ها را برای زندگی خود و خانواده‌تان
+                        بگیرید.
+                    </p> -->
+
+                    <!-- Buttons -->
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#booking"
+                            class="btn-primary text-white px-8 py-4 rounded-full flex items-center gap-2 font-medium text-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            رزرو وقت مشاوره تلفنی
+                        </a>
+                        <a href="#about"
+                            class="glass px-8 py-4 rounded-full flex items-center gap-2 font-medium text-lg text-[#1E2A3A] hover:shadow-lg transition-all">
+                            درباره من
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Left Column (Image) -->
+                <div class="order-1 lg:order-2 fade-in">
+                    <div class="relative">
+                        <div class="glass p-4 rounded-[32px]">
+                            <img src="1.jpg" alt="دکتر زهرا احسانی" class="w-full h-auto rounded-[24px]">
+                        </div>
+
+                        <!-- Floating Card -->
+                        <div class="absolute -bottom-6 -right-6 glass p-4 float-animation">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-[#E6F2FF] rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-[#2F80ED]" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm">مشاوره با دکتر زهرا احسانی</p>
+                                    <p class="text-xs text-[#6B7A90]">روانشناس و مشاور خانواده</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust Bar -->
+            <!-- <div class="grid md:grid-cols-3 gap-6 mt-16 fade-in">
+                <div class="glass p-6 flex items-center gap-4">
+                    <div class="w-14 h-14 bg-[#E6F2FF] rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg class="w-7 h-7 text-[#2F80ED]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-1">در زمان دلخواه شما</h3>
+                        <p class="text-sm text-[#6B7A90]">انعطاف‌پذیری در انتخاب زمان</p>
+                    </div>
+                </div>
+
+                <div class="glass p-6 flex items-center gap-4">
+                    <div class="w-14 h-14 bg-[#E6F2FF] rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg class="w-7 h-7 text-[#2F80ED]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-1">مشاوره تلفنی</h3>
+                        <p class="text-sm text-[#6B7A90]">بدون نیاز به مراجعه حضوری</p>
+                    </div>
+                </div>
+
+                <div class="glass p-6 flex items-center gap-4">
+                    <div class="w-14 h-14 bg-[#E6F2FF] rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg class="w-7 h-7 text-[#2F80ED]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-1">کاملا محرمانه</h3>
+                        <p class="text-sm text-[#6B7A90]">حفظ حریم خصوصی شما</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+            <!-- Services Section -->
+            <section id="services" class="py-20 px-4 md:px-8">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16 fade-in">
+                        <span
+                            class="inline-block bg-[#E6F2FF] text-[#2F80ED] px-4 py-2 rounded-full text-sm font-medium mb-4">خدمات
+                            من</span>
+                        <h2 class="text-3xl md:text-4xl font-bold">حوزه‌های تخصصی مشاوره</h2>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Service 1 -->
+                        <div class="service-card glass p-8 text-center fade-in">
+                            <img src="13.jpg" alt="">
+                            <h3 class="text-xl font-bold mb-3">مشاوره فردی</h3>
+                            <p class="text-[#6B7A90] text-sm leading-relaxed">کمک به شناخت بهتر خود و حل چالش‌های فردی و
+                                عاطفی</p>
+                        </div>
+
+                        <!-- Service 2 -->
+                        <div class="service-card glass p-8 text-center fade-in">
+                            <img src="15.jpg" alt="">
+                            <h3 class="text-xl font-bold mb-3">مشاوره زوجین</h3>
+                            <p class="text-[#6B7A90] text-sm leading-relaxed">تقویت روابط عاطفی و حل مسائل بین زوجین</p>
+                        </div>
+
+                        <!-- Service 3 -->
+                        <div class="service-card glass p-8 text-center fade-in">
+                            <img src="9.jpg" alt="">
+                            <h3 class="text-xl font-bold mb-3">مشاوره خانواده</h3>
+                            <p class="text-[#6B7A90] text-sm leading-relaxed">بهبود ارتباطات و حل تعارضات خانوادگی با
+                                رویکرد تخصصی</p>
+                        </div>
+
+                        <!-- Service 4 -->
+                        <div class="service-card glass p-8 text-center fade-in">
+                            <img src="2.jpg" alt="">
+                            <h3 class="text-xl font-bold mb-3">مشاوره آنلاین (تلفنی)</h3>
+                            <p class="text-[#6B7A90] text-sm leading-relaxed">دریافت مشاوره تخصصی از طریق تماس تلفنی در
+                                زمان دلخواه شما</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="py-20 px-4 md:px-8">
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <!-- Right Column (Text) -->
+                        <div class="order-2 lg:order-1 fade-in">
+                            <span
+                                class="inline-block bg-[#E6F2FF] text-[#2F80ED] px-4 py-2 rounded-full text-sm font-medium mb-4">درباره
+                                من</span>
+                            <h2 class="text-3xl md:text-4xl font-bold mb-2">دکتر زهرا احسانی</h2>
+                            <p class="text-xl text-[#2F80ED] font-medium mb-6">روانشناس و مشاور خانواده</p>
+
+                            <!-- <p class="text-[#6B7A90] leading-relaxed mb-8">
+                                با بیش از ۱۰ سال تجربه در زمینه مشاوره و روانشناسی، به افراد و خانواده‌ها کمک می‌کنم تا
+                                شناخت بهتری از خود و روابطشان داشته باشند و زندگی شادتر و متعادل‌تری را تجربه کنند.
+                            </p> -->
+
+                            <!-- Checklist -->
+                            <div class="space-y-4">
+                                <div class="check-item flex items-center gap-3">
+                                    <div
+                                        class="w-8 h-8 bg-[#E6F2FF] rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-5 h-5 text-[#2F80ED]" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium">دکترای تخصصی روانشناسی بالینی</span>
+                                </div>
+
+                                <div class="check-item flex items-center gap-3">
+                                    <div
+                                        class="w-8 h-8 bg-[#E6F2FF] rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-5 h-5 text-[#2F80ED]" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium">عضو سازمان نظام روانشناسی و مشاوره ایران</span>
+                                </div>
+
+                                <div class="check-item flex items-center gap-3">
+                                    <div
+                                        class="w-8 h-8 bg-[#E6F2FF] rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-5 h-5 text-[#2F80ED]" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium">مشاوره تلفنی با حفظ کامل محرمانگی</span>
+                                </div>
+
+                                <div class="check-item flex items-center gap-3">
+                                    <div
+                                        class="w-8 h-8 bg-[#E6F2FF] rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-5 h-5 text-[#2F80ED]" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium">ارائه راهکارهای عملی و موثر</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Left Column (Image) -->
+                        <div class="order-1 lg:order-2 fade-in">
+                            <div class="glass p-4 rounded-[24px]">
+                                <img src="3.jpg" alt="دکتر زهرا احسانی در مطب" class="w-full h-auto rounded-[20px]">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Online Consultation -->
+            <section id="consultation" class="why-section py-20 px-4 md:px-8">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16 fade-in">
+                        <h2 class="text-3xl md:text-4xl font-bold">چرا مشاوره تلفنی؟</h2>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Feature 1 -->
+                        <div class="glass p-8 text-center fade-in">
+                            <div
+                                class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                <svg class="w-10 h-10 text-[#2F80ED]" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">صرفه‌جویی در زمان</h3>
+                            <p class="text-[#6B7A90] text-sm leading-relaxed">بدون نیاز به رفت‌وآمد و اتلاف وقت</p>
+                        </div>
+
+                        <!-- Feature 2 -->
+                        <div class="glass p-8 text-center fade-in">
+                            <div
+                                class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                <svg class="w-10 h-10 text-[#2F80ED]" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">راحتی و دسترسی آسان</h3>
+                            <p class="text-[#6B7A90] text-sm leading-relaxed">از هر مکان و در زمان دلخواه شما</p>
+                        </div>
+
+                        <!-- Feature 3 -->
+                        <div class="glass p-8 text-center fade-in">
+                            <div
+                                class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                <svg class="w-10 h-10 text-[#2F80ED]" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">حفظ حریم خصوصی</h3>
+                            <p class="text-[#6B7A90] text-sm leading-relaxed">در محیطی امن و بدون استرس</p>
+                        </div>
+
+                        <!-- Feature 4 -->
+                        <div class="glass p-8 text-center fade-in">
+                            <div
+                                class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                                <svg class="w-10 h-10 text-[#2F80ED]" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">تمرکز بیشتر</h3>
+                            <p class="text-[#6B7A90] text-sm leading-relaxed">تمرکز کامل روی مسائل شما</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Booking Section -->
+            <section id="booking" class="py-20 px-4 md:px-8">
+                <div class="max-w-5xl mx-auto">
+                    <div class="glass p-8 md:p-12 fade-in">
+                        <div class="text-center mb-10">
+                            <span
+                                class="inline-block bg-[#E6F2FF] text-[#2F80ED] px-4 py-2 rounded-full text-sm font-medium mb-4">رزرو
+                                وقت مشاوره تلفنی</span>
+                            <h2 class="text-3xl md:text-4xl font-bold mb-4">نوبت مشاوره خود را رزرو کنید</h2>
+                            <p class="text-[#6B7A90]">تاریخ و ساعت مورد نظر خود را انتخاب کنید تا در زمان تعیین شده با
+                                شما تماس بگیریم.</p>
+                        </div>
+
+                        <form id="bookingForm" class="space-y-8">
+                            <div class="grid lg:grid-cols-3 gap-8">
+                                <!-- Column 1: User Info -->
+                                <div>
+                                    <h3 class="font-bold text-lg mb-4">اطلاعات شما</h3>
+                                    <div class="space-y-4">
+                                        <div>
+                                            <label class="block text-sm font-medium mb-2">نام و نام خانوادگی</label>
+                                            <input type="text" id="fullName" required
+                                                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#2F80ED] focus:outline-none transition-colors"
+                                                placeholder="نام خود را وارد کنید">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium mb-2">شماره تلفن</label>
+                                            <input type="tel" id="phone" required
+                                                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#2F80ED] focus:outline-none transition-colors"
+                                                placeholder="09123456789">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium mb-2">موضوع مشاوره</label>
+                                            <select id="subject" required
+                                                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#2F80ED] focus:outline-none transition-colors">
+                                                <option value="">انتخاب کنید</option>
+                                                <option value="individual">فردی</option>
+                                                <option value="couple">زوجین</option>
+                                                <option value="family">خانواده</option>
+                                                <option value="anxiety">اضطراب و استرس</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Column 2: Calendar -->
+                                <div>
+                                    <h3 class="font-bold text-lg mb-4">انتخاب تاریخ</h3>
+                                    <div class="glass-light p-4 rounded-xl">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <button type="button" id="prevMonth"
+                                                class="p-2 hover:bg-[#E6F2FF] rounded-lg transition-colors">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </button>
+                                            <span class="font-bold" id="currentMonth">خرداد ۱۴۰۴</span>
+                                            <button type="button" id="nextMonth"
+                                                class="p-2 hover:bg-[#E6F2FF] rounded-lg transition-colors">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M15 19l-7-7 7-7" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="grid grid-cols-7 gap-1 text-center text-xs mb-2">
+                                            <div class="font-medium">ش</div>
+                                            <div class="font-medium">ی</div>
+                                            <div class="font-medium">د</div>
+                                            <div class="font-medium">س</div>
+                                            <div class="font-medium">چ</div>
+                                            <div class="font-medium">پ</div>
+                                            <div class="font-medium">ج</div>
+                                        </div>
+                                        <div id="calendarDays" class="grid grid-cols-7 gap-1 text-center text-sm">
+                                            <!-- Days will be generated by JS -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Column 3: Time Slots -->
+                                <div>
+                                    <h3 class="font-bold text-lg mb-4">انتخاب ساعت</h3>
+                                    <div class="grid grid-cols-2 gap-3" id="timeSlots">
+                                        <button type="button"
+                                            class="time-slot border-2 border-gray-200 rounded-xl py-3 px-4 font-medium"
+                                            data-time="09:00">۰۹:۰۰</button>
+                                        <button type="button"
+                                            class="time-slot border-2 border-gray-200 rounded-xl py-3 px-4 font-medium"
+                                            data-time="10:00">۱۰:۰۰</button>
+                                        <button type="button"
+                                            class="time-slot border-2 border-gray-200 rounded-xl py-3 px-4 font-medium"
+                                            data-time="11:00">۱۱:۰۰</button>
+                                        <button type="button"
+                                            class="time-slot border-2 border-gray-200 rounded-xl py-3 px-4 font-medium"
+                                            data-time="14:00">۱۴:۰۰</button>
+                                        <button type="button"
+                                            class="time-slot border-2 border-gray-200 rounded-xl py-3 px-4 font-medium"
+                                            data-time="15:00">۱۵:۰۰</button>
+                                        <button type="button"
+                                            class="time-slot border-2 border-gray-200 rounded-xl py-3 px-4 font-medium"
+                                            data-time="16:00">۱۶:۰۰</button>
+                                        <button type="button"
+                                            class="time-slot border-2 border-gray-200 rounded-xl py-3 px-4 font-medium"
+                                            data-time="17:00">۱۷:۰۰</button>
+                                        <button type="button"
+                                            class="time-slot border-2 border-gray-200 rounded-xl py-3 px-4 font-medium"
+                                            data-time="18:00">۱۸:۰۰</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit"
+                                class="btn-primary w-full text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                تایید و رزرو نوبت مشاوره
+                            </button>
+
+                            <!-- Note -->
+                            <div class="flex items-center justify-center gap-2 text-sm text-[#6B7A90]">
+                                <svg class="w-5 h-5 text-[#2F80ED]" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                                <span>پس از رزرو نوبت، کارشناسان ما با شما تماس خواهند گرفت.</span>
+                            </div>
+                        </form>
+
+                        <!-- Success Message (Hidden by default) -->
+                        <div id="successMessage"
+                            class="hidden mt-8 glass-light p-6 rounded-xl border-2 border-green-400">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-green-800">رزرو با موفقیت انجام شد!</h3>
+                                    <p class="text-green-700">کارشناسان ما به زودی با شما تماس خواهند گرفت.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <!-- <section id="faq" class="py-20 px-4 md:px-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <span class="inline-block bg-[#E6F2FF] text-[#2F80ED] px-4 py-2 rounded-full text-sm font-medium mb-4">سوالات متداول</span>
+                <h2 class="text-3xl md:text-4xl font-bold">پاسخ به سوالات شما</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="glass p-6 fade-in">
+                    <h3 class="font-bold text-lg mb-2">مشاوره تلفنی چگونه انجام می‌شود؟</h3>
+                    <p class="text-[#6B7A90]">پس از رزرو نوبت، در زمان تعیین شده با شما تماس گرفته می‌شود و جلسه مشاوره به صورت تلفنی برگزار می‌گردد.</p>
+                </div>
+
+                <div class="glass p-6 fade-in">
+                    <h3 class="font-bold text-lg mb-2">آیا اطلاعات من محرمانه می‌ماند؟</h3>
+                    <p class="text-[#6B7A90]">بله، تمامی اطلاعات شما کاملاً محرمانه است و طبق اصول اخلاق حرفه‌ای روانشناسی حفظ می‌شود.</p>
+                </div>
+
+                <div class="glass p-6 fade-in">
+                    <h3 class="font-bold text-lg mb-2">مدت زمان هر جلسه مشاوره چقدر است؟</h3>
+                    <p class="text-[#6B7A90]">هر جلسه مشاوره تلفنی معمولاً بین ۴۵ تا ۶۰ دقیقه طول می‌کشد.</p>
+                </div>
+
+                <div class="glass p-6 fade-in">
+                    <h3 class="font-bold text-lg mb-2">آیا امکان تغییر زمان نوبت وجود دارد؟</h3>
+                    <p class="text-[#6B7A90]">بله، با اطلاع قبلی ۲۴ ساعته می‌توانید زمان نوبت خود را تغییر دهید.</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+            <!-- Footer -->
+            
+
+                    <!-- Bottom Line -->
+                    <div class="border-t border-white/20 pt-8 text-center">
+                        <p class="text-sm opacity-80">© تمامی حقوق این وب‌سایت محفوظ است.</p>
+                    </div>
+                </div>
+            </footer>
+
+            <script>
+                // Mobile Menu Toggle
+                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                const mobileMenu = document.getElementById('mobileMenu');
+
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                // Close mobile menu when clicking on a link
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+
+                // Sticky Header Effect
+                const header = document.getElementById('header');
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('shadow-lg');
+                    } else {
+                        header.classList.remove('shadow-lg');
+                    }
+                });
+
+                // Smooth Scroll
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+
+                // Fade In Animation on Scroll
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.fade-in').forEach(el => {
+                    observer.observe(el);
+                });
+
+                // Calendar Generation
+                const calendarDays = document.getElementById('calendarDays');
+                const persianDays = ['۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '۱۰', '۱۱', '۱۲', '۱۳', '۱۴', '۱۵', '۱۶', '۱۷', '۱۸', '۱۹', '۲۰', '۲۱', '۲۲', '۲۳', '۲۴', '۲', '۲۶', '۲۷', '۲۸', '۲۹', '۳۰', '۳۱'];
+
+                // Generate calendar days (31 days for Khordad)
+                for (let i = 0; i < 35; i++) {
+                    const dayDiv = document.createElement('div');
+                    if (i < 31) {
+                        dayDiv.textContent = persianDays[i];
+                        dayDiv.className = 'calendar-day p-2 rounded-lg cursor-pointer hover:bg-[#E6F2FF] transition-colors';
+                        dayDiv.addEventListener('click', function () {
+                            document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
+                            this.classList.add('selected');
+                        });
+                    } else {
+                        dayDiv.className = 'p-2';
+                    }
+                    calendarDays.appendChild(dayDiv);
+                }
+
+                // Time Slot Selection
+                const timeSlots = document.querySelectorAll('.time-slot');
+                timeSlots.forEach(slot => {
+                    slot.addEventListener('click', function () {
+                        timeSlots.forEach(s => s.classList.remove('selected'));
+                        this.classList.add('selected');
+                    });
+                });
+
+                // Form Validation and Submission
+                const bookingForm = document.getElementById('bookingForm');
+                const successMessage = document.getElementById('successMessage');
+
+                bookingForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const fullName = document.getElementById('fullName').value;
+                    const phone = document.getElementById('phone').value;
+                    const subject = document.getElementById('subject').value;
+                    const selectedDate = document.querySelector('.calendar-day.selected');
+                    const selectedTime = document.querySelector('.time-slot.selected');
+
+                    // Validation
+                    if (!fullName || !phone || !subject) {
+                        alert('لطفاً تمامی فیلدها را پر کنید.');
+                        return;
+                    }
+
+                    if (!selectedDate) {
+                        alert('لطفاً یک تاریخ انتخاب کنید.');
+                        return;
+                    }
+
+                    if (!selectedTime) {
+                        alert('لطفاً یک ساعت انتخاب کنید.');
+                        return;
+                    }
+
+                    // Phone validation (Iranian format)
+                    const phoneRegex = /^09\d{9}$/;
+                    if (!phoneRegex.test(phone)) {
+                        alert('لطفاً شماره تلفن معتبر وارد کنید (مثال: 09123456789)');
+                        return;
+                    }
+
+                    // Show success message
+                    successMessage.classList.remove('hidden');
+                    bookingForm.reset();
+                    document.querySelectorAll('.calendar-day, .time-slot').forEach(el => {
+                        el.classList.remove('selected');
+                    });
+
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.classList.add('hidden');
+                    }, 5000);
+
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+
+                // Initialize first visible elements
+                setTimeout(() => {
+                    document.querySelectorAll('.fade-in').forEach(el => {
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top < window.innerHeight) {
+                            el.classList.add('visible');
+                        }
+                    });
+                }, 100);
+            </script>
+</body>
+
+</html>
